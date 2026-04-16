@@ -1,0 +1,63 @@
+[general]
+db_path = "~/.local/share/whale-detector/trades.db"
+poll_interval_seconds = 5
+log_level = "INFO"
+
+[thresholds]
+absolute_size_usd = 10000
+z_score_threshold = 3.0
+rolling_window_trades = 500
+alert_threshold = 0.3
+timing_window_hours = 24.0
+minority_price_threshold = 0.35
+new_wallet_days = 7.0
+min_trades_established = 10
+min_markets_diverse = 3
+win_rate_min_trades = 5
+low_prob_threshold = 0.15
+prob_size_amplifier = 1000.0
+coordination_lookback_seconds = 3600
+coordination_min_wallets = 3
+coordination_max_price = 0.20
+coordination_fresh_threshold = 5
+coordination_tight_window = 1800
+coordination_min_confidence = 0.4
+
+[scoring]
+trade_size_weight = 0.25
+timing_weight = 0.15
+account_age_weight = 0.15
+win_rate_weight = 0.10
+probability_weight = 0.15
+coordination_weight = 0.20
+
+[alerting]
+sinks = ["terminal"]
+# discord_webhook_url = "https://discord.com/api/webhooks/..."
+# telegram_bot_token = "123456:ABC-DEF..."
+# telegram_chat_id = "-1001234567890"
+
+[markets]
+watch_slugs = []
+exclude_slug_patterns = [
+    "btc-above-*",
+    "btc-below-*",
+    "eth-above-*",
+    "eth-below-*",
+    "btc-updown-*",
+    "eth-updown-*",
+    "bitcoin-above-*",
+    "bitcoin-below-*",
+    "bitcoin-up-or-down-*",
+    "ethereum-above-*",
+    "ethereum-below-*",
+    "ethereum-up-or-down-*",
+    "highest-temperature-*",
+]
+
+[paper_trading]
+enabled = true
+initial_bankroll = 10000.0
+risk_per_trade_pct = 0.02
+min_alert_score = 0.3
+resolution_poll_interval = 300

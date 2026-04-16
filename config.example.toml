@@ -1,0 +1,43 @@
+[general]
+db_path = "~/.local/share/whale-detector/trades.db"
+poll_interval_seconds = 5
+log_level = "INFO"
+
+[thresholds]
+# Minimum USDC value to flag a trade (absolute threshold)
+absolute_size_usd = 10000
+# Flag trades this many standard deviations above the market's rolling average
+z_score_threshold = 3.0
+# Number of recent trades per market used to compute rolling statistics
+rolling_window_trades = 500
+# Composite score threshold to generate an alert (0.0 - 1.0)
+alert_threshold = 0.5
+
+[scoring]
+trade_size_weight = 1.0
+
+[alerting]
+sinks = ["terminal"]
+# discord_webhook_url = ""
+# telegram_bot_token = ""
+# telegram_chat_id = ""
+
+[markets]
+# Only monitor specific market slugs (empty = all markets)
+watch_slugs = []
+# Exclude high-frequency micro markets that generate noise
+exclude_slug_patterns = [
+    "btc-above-*",
+    "btc-below-*",
+    "eth-above-*",
+    "eth-below-*",
+    "btc-updown-*",
+    "eth-updown-*",
+    "bitcoin-above-*",
+    "bitcoin-below-*",
+    "bitcoin-up-or-down-*",
+    "ethereum-above-*",
+    "ethereum-below-*",
+    "ethereum-up-or-down-*",
+    "highest-temperature-*",
+]
